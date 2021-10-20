@@ -5,7 +5,7 @@
 dotnet build
 ```
 
-Запустить проект
+Запустить проект из папки TodoApi
 ```
 dotnet run
 ```
