@@ -735,19 +735,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/namerei/.nuget/packages/": {}
+    "/Users/air/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/namerei/Projects/TodoApi/TodoApi/TodoApi.csproj",
+      "projectUniqueName": "/Users/air/nik/todoAPICSharp/TodoApi/TodoApi/TodoApi.csproj",
       "projectName": "TodoApi",
-      "projectPath": "/Users/namerei/Projects/TodoApi/TodoApi/TodoApi.csproj",
-      "packagesPath": "/Users/namerei/.nuget/packages/",
-      "outputPath": "/Users/namerei/Projects/TodoApi/TodoApi/obj/",
+      "projectPath": "/Users/air/nik/todoAPICSharp/TodoApi/TodoApi/TodoApi.csproj",
+      "packagesPath": "/Users/air/.nuget/packages/",
+      "outputPath": "/Users/air/nik/todoAPICSharp/TodoApi/TodoApi/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/namerei/.config/NuGet/NuGet.Config"
+        "/Users/air/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -798,7 +798,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.203/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.402/RuntimeIdentifierGraph.json"
       }
     }
   }
