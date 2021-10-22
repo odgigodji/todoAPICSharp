@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -57,14 +58,8 @@ namespace TodoApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TodoItemExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                if (!TodoItemExists(id)) { return NotFound(); }
+                else { throw; }
             }
 
             return NoContent();
@@ -72,24 +67,32 @@ namespace TodoApi.Controllers
 
         // POST: api/TodoItems
         //Этот метод получает значение элемента списка дел из текста HTTP-запроса.
-
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
 
-
-        /// <summary>
-        /// Deletes a specific TodoItem.
-        /// </summary>
-        /// <param name="id"></param>        
         [HttpPost]
         // [SwaggerOperation(Summary = "Write your summary here")]
         public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
         {
-            _context.TodoItems.Add(todoItem);
-            await _context.SaveChangesAsync();
-
+             if (todoItem.Type == "work" || todoItem.Type == "personal")
+            {
+                _context.TodoItems.Add(todoItem);
+                await _context.SaveChangesAsync();
+                return CreatedAtAction(nameof(GetTodoItem), new { id = todoItem.Id }, todoItem);
+            }
             // return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
-            return CreatedAtAction(nameof(GetTodoItem), new { id = todoItem.Id }, todoItem);
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Error: can't create todoitem, because type is incorrect. Try with \"work\" or \"private\"");
+                return NoContent();
+            }
         }
+            // _context.TodoItems.Add(todoItem);
+            // await _context.SaveChangesAsync();
+
+            // // return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
+            // return CreatedAtAction(nameof(GetTodoItem), new { id = todoItem.Id }, todoItem);
+        // }
 
         // DELETE: api/TodoItems/5
         [HttpDelete("{id}")]
