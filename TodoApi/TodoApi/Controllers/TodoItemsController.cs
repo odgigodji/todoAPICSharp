@@ -62,13 +62,19 @@ namespace TodoApi.Controllers
 
         // PUT: api/TodoItems/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTodoItem(long id, TodoItem todoItem)
+        public async Task<IActionResult> PutTodoItem(long id, TodoItemDTO todoItemDTO)
         {
-            if (id != todoItem.Id)
+            var todoItem = await _context.TodoItems.FindAsync(id);
+            if (todoItem == null)
             {
-                return BadRequest();
+                return NotFound();
             }
 
+            todoItem.Type = todoItemDTO.Type;
+            todoItem.Description = todoItemDTO.Description;
+            todoItem.DateOfCompletion = todoItemDTO.DateOfCompletion;
+            todoItem.IsComplete = todoItemDTO.IsComplete;
+        
             _context.Entry(todoItem).State = EntityState.Modified;
 
             try
