@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "DY8/11z74i5jHexHPX2qFFTUO3u7Ng06NvLnqYKNCPkhtYI6DzGwL1fUTQa0UwNZroNOMmBR1plUEjrbLxOPlQ==",
+  "dgSpecHash": "wCsWXtStO/lJjXpQgvpURxdYXZ2wuvFkxBRWVI1a9hpOvwGK3Om0edNzpg6N2xi++T2zlAcsJKVTefDj/KkiAQ==",
   "success": true,
-  "projectFilePath": "/Users/namerei/work/todoAPICSharp/TodoApi/TodoApi/TodoApi.csproj",
+  "projectFilePath": "/Users/namerei/work/todoAPICSharp/TodoApi/TodoApi.csproj",
   "expectedPackageFiles": [
     "/Users/namerei/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
     "/Users/namerei/.nuget/packages/microsoft.aspnetcore.html.abstractions/2.2.0/microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

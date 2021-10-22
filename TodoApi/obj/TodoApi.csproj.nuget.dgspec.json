@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/namerei/work/todoAPICSharp/TodoApi/TodoApi/TodoApi.csproj": {}
+    "/Users/namerei/work/todoAPICSharp/TodoApi/TodoApi.csproj": {}
   },
   "projects": {
-    "/Users/namerei/work/todoAPICSharp/TodoApi/TodoApi/TodoApi.csproj": {
+    "/Users/namerei/work/todoAPICSharp/TodoApi/TodoApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/namerei/work/todoAPICSharp/TodoApi/TodoApi/TodoApi.csproj",
+        "projectUniqueName": "/Users/namerei/work/todoAPICSharp/TodoApi/TodoApi.csproj",
         "projectName": "TodoApi",
-        "projectPath": "/Users/namerei/work/todoAPICSharp/TodoApi/TodoApi/TodoApi.csproj",
+        "projectPath": "/Users/namerei/work/todoAPICSharp/TodoApi/TodoApi.csproj",
         "packagesPath": "/Users/namerei/.nuget/packages/",
-        "outputPath": "/Users/namerei/work/todoAPICSharp/TodoApi/TodoApi/obj/",
+        "outputPath": "/Users/namerei/work/todoAPICSharp/TodoApi/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/namerei/.nuget/NuGet/NuGet.Config"
