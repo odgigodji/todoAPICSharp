@@ -32,14 +32,12 @@ namespace TodoApi
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "API сервиса планирования задач.",
-                    Description = "Функционал: <br />⁃ Создать задачу(POST).<br />⁃ Редактировать задачу(PUT).<br />⁃ Удалить задачу(DELETE).<br />⁃ Пометить задачу выполненной(PUT).<br />" +
-                        "<br />При создании задачи нужно указать ее тип (work или personal - в противном случае задача не создастся), дату завершения задачи и описание.",
-                    // TermsOfService = new Uri("https://example.com/terms"),
+                    Title = "API сервиса планирования задач",
+                    Description = "Функционал: <br />⁃ Создать задачу(POST)<br />⁃ Редактировать задачу(PUT)<br />⁃ Удалить задачу(DELETE)<br />⁃ Пометить задачу выполненной(PUT)<br />" +
+                        "<br />При создании задачи нужно указать ее тип (\"work\" или \"personal\" - в противном случае задача не создастся), дату завершения задачи и описание.",
                     Contact = new OpenApiContact
                     {
                         Name = "Никита Евдокимов",
-                        // Email = "evdokimovnikita1@gmail.com",
                         Url = new Uri("https://github.com/odgigodji/todoAPICSharp"),
                     },
                 });
