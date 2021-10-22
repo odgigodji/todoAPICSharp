@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 
 namespace TodoApi.Models
 {
-    public class TodoItem
+    public class TodoItemDTO
     {
-        internal long Id { get; set; }
+        protected long Id { get; set; }
         public string Type {  get; set; }
         public string Description { get; set; }
         public DateTime DateOfCompletion { get; set; }

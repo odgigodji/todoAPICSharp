@@ -43,7 +43,6 @@ namespace TodoApi.Controllers
         }
 
         // PUT: api/TodoItems/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTodoItem(long id, TodoItem todoItem)
         {
@@ -69,8 +68,6 @@ namespace TodoApi.Controllers
 
         // POST: api/TodoItems
         //Этот метод получает значение элемента списка дел из текста HTTP-запроса.
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-
         [HttpPost]
         public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
         {
@@ -104,9 +101,66 @@ namespace TodoApi.Controllers
             return NoContent();
         }
 
+        //PATCH: api/TodoItems/5
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> PatchTodoItem(long id, TodoItem todoItemDTO)
+        {
+            if (id != todoItemDTO.Id)
+            {
+                return BadRequest();
+            }
+
+            var todoItem = await _context.TodoItems.FindAsync(id);
+            if (todoItem == null)
+            {
+                return NotFound();
+            }
+
+            todoItem.Type = todoItemDTO.Type;
+            todoItem.Description = todoItemDTO.Description;
+            todoItem.DateOfCompletion = todoItemDTO.DateOfCompletion;
+            todoItem.IsComplete = todoItemDTO.IsComplete;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException) when (!TodoItemExists(id))
+            {
+                return NotFound();
+            }
+
+            return NoContent();
+        }
         private bool TodoItemExists(long id)
         {
             return _context.TodoItems.Any(e => e.Id == id);
         }
+
+        private static TodoItemDTO ItemToDTO(TodoItem todoItem) =>
+        new TodoItemDTO
+        {
+            // Id = todoItem.Id,
+            Description = todoItem.Description,
+            IsComplete = todoItem.IsComplete,
+            Type = todoItem.Type,
+            DateOfCompletion = todoItem.DateOfCompletion
+        };
     }
 }
+
+/*
+[HttpPatch("{id}")]
+public async Task<IActionResult> PatchCard(long id, CardBalanceDto balanceDto)
+{
+    var card = new Card() { Id = id, Balance = balanceDto.Balance};
+    _context.Cards.Attach(Card);
+    _context.Entry(card).Property(x => x.Balance).IsModified = true;
+    return Ok(await _context.SaveChangesAsync());
+}
+Your DTO would look something like this:
+
+public class CardBalanceDto {
+    public decimal Balance { get; set; }
+}
+*/
