@@ -70,16 +70,14 @@ namespace TodoApi.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
 
         [HttpPost]
-        // [SwaggerOperation(Summary = "Write your summary here")]
         public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
         {
-             if (todoItem.Type == "work" || todoItem.Type == "personal")
+            if (todoItem.Type == "work" || todoItem.Type == "personal")
             {
                 _context.TodoItems.Add(todoItem);
                 await _context.SaveChangesAsync();
                 return CreatedAtAction(nameof(GetTodoItem), new { id = todoItem.Id }, todoItem);
             }
-            // return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
             else
             {
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -87,12 +85,6 @@ namespace TodoApi.Controllers
                 return NoContent();
             }
         }
-            // _context.TodoItems.Add(todoItem);
-            // await _context.SaveChangesAsync();
-
-            // // return CreatedAtAction("GetTodoItem", new { id = todoItem.Id }, todoItem);
-            // return CreatedAtAction(nameof(GetTodoItem), new { id = todoItem.Id }, todoItem);
-        // }
 
         // DELETE: api/TodoItems/5
         [HttpDelete("{id}")]

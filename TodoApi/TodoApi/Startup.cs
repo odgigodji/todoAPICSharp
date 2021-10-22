@@ -44,7 +44,7 @@ namespace TodoApi
                     {
                         Name = "Никита Евдокимов",
                         // Email = "evdokimovnikita1@gmail.com",
-                        Url = new Uri("https://github.com/odgigodji"),
+                        Url = new Uri("https://github.com/odgigodji/todoAPICSharp"),
                     },
                 });
             });
