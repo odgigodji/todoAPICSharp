@@ -1,10 +1,10 @@
-﻿/*
+﻿using Microsoft.EntityFrameworkCore;
+
+/*
     Контекст базы данных —это основной класс, который координирует функциональные
     возможности Entity Framework для модели данных.
     Этот класс является производным от класса Microsoft.EntityFrameworkCore.DbContext.
 */
-
-using Microsoft.EntityFrameworkCore;
 
 namespace TodoApi.Models
 {

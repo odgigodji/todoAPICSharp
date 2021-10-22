@@ -33,9 +33,6 @@ namespace TodoApi.Controllers
         {
             TodoItem todoItem = new TodoItem();
 
-            // Console.ForegroundColor = ConsoleColor.Green;
-            // Console.WriteLine("id is " + todoItem.Id + "\n");
-
             if (todoItemDTO.Type == "work" || todoItemDTO.Type == "personal")
             {
                 todoItem.Id = 0;
@@ -46,6 +43,10 @@ namespace TodoApi.Controllers
 
                 _context.TodoItems.Add(todoItem);
                 await _context.SaveChangesAsync();
+
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("New task created!");
+            
                 return CreatedAtAction(nameof(GetTodoItems), new { id = todoItem.Id }, todoItem);
             }
             else
@@ -65,12 +66,10 @@ namespace TodoApi.Controllers
             {
                 return NotFound();
             }
-            Console.WriteLine("----------------------------Type is " + todoItemDTO.Type + "-------\n");
             if (todoItemDTO.Type != "work" && todoItemDTO.Type != "personal")
             { 
-                // Console.ForegroundColor = ConsoleColor.Red;
-                // Console.WriteLine("Error: can't change todoitem, because type is incorrect. Try with \"work\" or \"personal\"\n");
-                // return NoContent();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Error: can't change todoitem, because type is incorrect. Try with \"work\" or \"personal\"\n");
                 return CreatedAtAction(nameof(GetTodoItems), new { id = todoItem.Id }, todoItem);
             }
 
@@ -140,36 +139,3 @@ namespace TodoApi.Controllers
         };
     }
 }
-
-/*
-        [HttpPatch("{id}")]
-        public async Task<IActionResult> PatchCard(long id, CardBalanceDto balanceDto)
-        {
-            var card = new Card() { Id = id, Balance = balanceDto.Balance};
-            _context.Cards.Attach(Card);
-            _context.Entry(card).Property(x => x.Balance).IsModified = true;
-            return Ok(await _context.SaveChangesAsync());
-        }
-        Your DTO would look something like this:
-
-        public class CardBalanceDto {
-            public decimal Balance { get; set; }
-        }
-
-
-        // GET: api/TodoItems/5
-        // [HttpGet("{id}")]
-        // public async Task<ActionResult<TodoItem>> GetTodoItem(long id)
-        // {
-        //     var todoItem = await _context.TodoItems.FindAsync(id);
-
-        //     if (todoItem == null)
-        //     {
-        //         Console.ForegroundColor = ConsoleColor.Red;
-        //         Console.WriteLine("Error:Todoitem with id=" + id + " not found");
-        //         return NotFound();
-        //     }
-
-        //     return todoItem;
-        // }
-*/
