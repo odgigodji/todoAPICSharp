@@ -74,7 +74,7 @@ namespace TodoApi.Controllers
             todoItem.Description = todoItemDTO.Description;
             todoItem.DateOfCompletion = todoItemDTO.DateOfCompletion;
             todoItem.IsComplete = todoItemDTO.IsComplete;
-        
+
             _context.Entry(todoItem).State = EntityState.Modified;
 
             try
