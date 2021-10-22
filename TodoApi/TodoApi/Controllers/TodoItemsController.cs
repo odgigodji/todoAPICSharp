@@ -14,7 +14,7 @@ namespace TodoApi.Controllers
     {
         private readonly TodoContext _context;
 
-        // static int staticId = 0;
+
         public TodoItemsController(TodoContext context)
         {
             _context = context;
@@ -29,21 +29,20 @@ namespace TodoApi.Controllers
 
         // POST: api/TodoItems
         [HttpPost]
-        public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
+        public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItemDTO todoItemDTO)
         {
-            // var todoItem = await _context.TodoItems.FindAsync(id);
+            TodoItem todoItem = new TodoItem();
 
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("id is " + todoItem.Id + "\n");
+            // Console.ForegroundColor = ConsoleColor.Green;
+            // Console.WriteLine("id is " + todoItem.Id + "\n");
 
-            if (todoItem.Type == "work" || todoItem.Type == "personal")
+            if (todoItemDTO.Type == "work" || todoItemDTO.Type == "personal")
             {
-                // todoItem.Type = todoIte.Type;
-                // todoItem.Description = todoItemDTO.Description;
-                // todoItem.DateOfCompletion = todoItemDTO.DateOfCompletion;
-                // todoItem.IsComplete = todoItemDTO.IsComplete;
-
-                // staticId++;
+                todoItem.Id = 0;
+                todoItem.Type = todoItemDTO.Type;
+                todoItem.Description = todoItemDTO.Description;
+                todoItem.DateOfCompletion = todoItemDTO.DateOfCompletion;
+                todoItem.IsComplete = todoItemDTO.IsComplete;
 
                 _context.TodoItems.Add(todoItem);
                 await _context.SaveChangesAsync();
@@ -138,7 +137,8 @@ namespace TodoApi.Controllers
             if (todoItem.IsComplete == false) { todoItem.IsComplete = !todoItem.IsComplete; } 
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return CreatedAtAction(nameof(GetTodoItems), new { id = todoItem.Id }, todoItem);
+            // return NoContent();
         }
         private bool TodoItemExists(long id)
         {
