@@ -10,7 +10,7 @@
 dotnet run
 ```
 
-Рабочий адрес API
+Рабочий адрес для API
 ```
 https://localhost:5001/swagger/index.html
 ```
