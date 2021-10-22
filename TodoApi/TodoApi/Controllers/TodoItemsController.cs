@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TodoApi.Models;
+using Microsoft.OpenApi.Models;
 
 namespace TodoApi.Controllers
 {
@@ -76,7 +77,14 @@ namespace TodoApi.Controllers
         //Этот метод получает значение элемента списка дел из текста HTTP-запроса.
 
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
+
+        /// <summary>
+        /// Deletes a specific TodoItem.
+        /// </summary>
+        /// <param name="id"></param>        
         [HttpPost]
+        // [SwaggerOperation(Summary = "Write your summary here")]
         public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
         {
             _context.TodoItems.Add(todoItem);

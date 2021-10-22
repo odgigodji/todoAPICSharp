@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/air/nik/todoAPICSharp/TodoApi/TodoApi/TodoApi.csproj": {}
+    "/Users/namerei/work/todoAPICSharp/TodoApi/TodoApi/TodoApi.csproj": {}
   },
   "projects": {
-    "/Users/air/nik/todoAPICSharp/TodoApi/TodoApi/TodoApi.csproj": {
+    "/Users/namerei/work/todoAPICSharp/TodoApi/TodoApi/TodoApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/air/nik/todoAPICSharp/TodoApi/TodoApi/TodoApi.csproj",
+        "projectUniqueName": "/Users/namerei/work/todoAPICSharp/TodoApi/TodoApi/TodoApi.csproj",
         "projectName": "TodoApi",
-        "projectPath": "/Users/air/nik/todoAPICSharp/TodoApi/TodoApi/TodoApi.csproj",
-        "packagesPath": "/Users/air/.nuget/packages/",
-        "outputPath": "/Users/air/nik/todoAPICSharp/TodoApi/TodoApi/obj/",
+        "projectPath": "/Users/namerei/work/todoAPICSharp/TodoApi/TodoApi/TodoApi.csproj",
+        "packagesPath": "/Users/namerei/.nuget/packages/",
+        "outputPath": "/Users/namerei/work/todoAPICSharp/TodoApi/TodoApi/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/air/.nuget/NuGet/NuGet.Config"
+          "/Users/namerei/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
@@ -59,6 +59,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"
+            },
+            "Swashbuckle.AspNetCore.Annotations": {
+              "target": "Package",
+              "version": "[6.2.3, )"
             }
           },
           "imports": [
@@ -79,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.402/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.203/RuntimeIdentifierGraph.json"
         }
       }
     }
