@@ -34,6 +34,8 @@ namespace TodoApi.Controllers
 
             if (todoItem == null)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Error:Todoitem with id=" + id + " not found");
                 return NotFound();
             }
 
