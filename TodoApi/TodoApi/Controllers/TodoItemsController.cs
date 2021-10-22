@@ -13,7 +13,8 @@ namespace TodoApi.Controllers
     public class TodoItemsController : ControllerBase
     {
         private readonly TodoContext _context;
-    
+
+        // static int staticId = 0;
         public TodoItemsController(TodoContext context)
         {
             _context = context;
@@ -30,35 +31,47 @@ namespace TodoApi.Controllers
         [HttpPost]
         public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
         {
+            // var todoItem = await _context.TodoItems.FindAsync(id);
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("id is " + todoItem.Id + "\n");
+
             if (todoItem.Type == "work" || todoItem.Type == "personal")
             {
+                // todoItem.Type = todoIte.Type;
+                // todoItem.Description = todoItemDTO.Description;
+                // todoItem.DateOfCompletion = todoItemDTO.DateOfCompletion;
+                // todoItem.IsComplete = todoItemDTO.IsComplete;
+
+                // staticId++;
+
                 _context.TodoItems.Add(todoItem);
                 await _context.SaveChangesAsync();
-                return CreatedAtAction(nameof(GetTodoItem), new { id = todoItem.Id }, todoItem);
+                return CreatedAtAction(nameof(GetTodoItems), new { id = todoItem.Id }, todoItem);
             }
             else
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Error: can't create todoitem, because type is incorrect. Try with \"work\" or \"personal\"");
+                Console.WriteLine("Error: can't create todoitem, because type is incorrect. Try with \"work\" or \"personal\"\n");
                 return NoContent();
             }
         }
 
         // GET: api/TodoItems/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<TodoItem>> GetTodoItem(long id)
-        {
-            var todoItem = await _context.TodoItems.FindAsync(id);
+        // [HttpGet("{id}")]
+        // public async Task<ActionResult<TodoItem>> GetTodoItem(long id)
+        // {
+        //     var todoItem = await _context.TodoItems.FindAsync(id);
 
-            if (todoItem == null)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Error:Todoitem with id=" + id + " not found");
-                return NotFound();
-            }
+        //     if (todoItem == null)
+        //     {
+        //         Console.ForegroundColor = ConsoleColor.Red;
+        //         Console.WriteLine("Error:Todoitem with id=" + id + " not found");
+        //         return NotFound();
+        //     }
 
-            return todoItem;
-        }
+        //     return todoItem;
+        // }
 
         // PUT: api/TodoItems/5
         [HttpPut("{id}")]
@@ -68,6 +81,12 @@ namespace TodoApi.Controllers
             if (todoItem == null)
             {
                 return NotFound();
+            }
+            if (todoItemDTO.Type != "work" || todoItemDTO.Type != "personal")
+            { 
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Error: can't change todoitem, because type is incorrect. Try with \"work\" or \"personal\"\n");
+                return NoContent();
             }
 
             todoItem.Type = todoItemDTO.Type;
