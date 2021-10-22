@@ -39,7 +39,6 @@ namespace TodoApi.Controllers
                 todoItem.Type = todoItemDTO.Type;
                 todoItem.Description = todoItemDTO.Description;
                 todoItem.DateOfCompletion = todoItemDTO.DateOfCompletion;
-                // todoItem.IsComplete = todoItemDTO.IsComplete;
 
                 _context.TodoItems.Add(todoItem);
                 await _context.SaveChangesAsync();
@@ -76,7 +75,6 @@ namespace TodoApi.Controllers
             todoItem.Type = todoItemDTO.Type;
             todoItem.Description = todoItemDTO.Description;
             todoItem.DateOfCompletion = todoItemDTO.DateOfCompletion;
-            // todoItem.IsComplete = todoItemDTO.IsComplete;
 
             _context.Entry(todoItem).State = EntityState.Modified;
 
@@ -129,13 +127,10 @@ namespace TodoApi.Controllers
             return CreatedAtAction(nameof(GetTodoItems), new { id = todoItem.Id }, todoItem);
         }
 
-        
-
         private static TodoItemDTO ItemToDTO(TodoItem todoItem) =>
         new TodoItemDTO
         {
             Description = todoItem.Description,
-            // IsComplete = todoItem.IsComplete,
             Type = todoItem.Type,
             DateOfCompletion = todoItem.DateOfCompletion
         };
