@@ -4,10 +4,7 @@
   <img src="https://i.ibb.co/F5fg3rL/Screen-Shot-2021-10-23-at-12-49-26-AM.png" width="100%" />
 </p>
 
-Собрать или запустить проект из папки TodoApi через терминал:
-```
-dotnet build
-```
+Запустить проект из папки TodoApi через терминал:
 
 ```
 dotnet run
