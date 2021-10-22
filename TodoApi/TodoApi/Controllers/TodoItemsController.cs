@@ -83,7 +83,7 @@ namespace TodoApi.Controllers
             else
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Error: can't create todoitem, because type is incorrect. Try with \"work\" or \"private\"");
+                Console.WriteLine("Error: can't create todoitem, because type is incorrect. Try with \"work\" or \"personal\"");
                 return NoContent();
             }
         }
