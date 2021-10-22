@@ -13,7 +13,7 @@ namespace TodoApi.Controllers
     public class TodoItemsController : ControllerBase
     {
         private readonly TodoContext _context;
-
+    
         public TodoItemsController(TodoContext context)
         {
             _context = context;
@@ -103,32 +103,17 @@ namespace TodoApi.Controllers
 
         //PATCH: api/TodoItems/5
         [HttpPatch("{id}")]
-        public async Task<IActionResult> PatchTodoItem(long id, TodoItem todoItemDTO)
+        public async Task<IActionResult> PatchTodoItem(long id)
         {
-            if (id != todoItemDTO.Id)
-            {
-                return BadRequest();
-            }
-
             var todoItem = await _context.TodoItems.FindAsync(id);
             if (todoItem == null)
             {
                 return NotFound();
             }
 
-            todoItem.Type = todoItemDTO.Type;
-            todoItem.Description = todoItemDTO.Description;
-            todoItem.DateOfCompletion = todoItemDTO.DateOfCompletion;
-            todoItem.IsComplete = todoItemDTO.IsComplete;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException) when (!TodoItemExists(id))
-            {
-                return NotFound();
-            }
+            // _context.TodoItems.Remove(todoItem);
+            if (todoItem.IsComplete == false) { todoItem.IsComplete = !todoItem.IsComplete; } 
+            await _context.SaveChangesAsync();
 
             return NoContent();
         }
@@ -141,10 +126,10 @@ namespace TodoApi.Controllers
         new TodoItemDTO
         {
             // Id = todoItem.Id,
-            Description = todoItem.Description,
-            IsComplete = todoItem.IsComplete,
-            Type = todoItem.Type,
-            DateOfCompletion = todoItem.DateOfCompletion
+            // Description = todoItem.Description,
+            // IsComplete = todoItem.IsComplete,
+            // Type = todoItem.Type,
+            // DateOfCompletion = todoItem.DateOfCompletion
         };
     }
 }
