@@ -26,6 +26,24 @@ namespace TodoApi.Controllers
             return await _context.TodoItems.ToListAsync();
         }
 
+        // POST: api/TodoItems
+        [HttpPost]
+        public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
+        {
+            if (todoItem.Type == "work" || todoItem.Type == "personal")
+            {
+                _context.TodoItems.Add(todoItem);
+                await _context.SaveChangesAsync();
+                return CreatedAtAction(nameof(GetTodoItem), new { id = todoItem.Id }, todoItem);
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Error: can't create todoitem, because type is incorrect. Try with \"work\" or \"personal\"");
+                return NoContent();
+            }
+        }
+
         // GET: api/TodoItems/5
         [HttpGet("{id}")]
         public async Task<ActionResult<TodoItem>> GetTodoItem(long id)
@@ -66,25 +84,6 @@ namespace TodoApi.Controllers
             return NoContent();
         }
 
-        // POST: api/TodoItems
-        //Этот метод получает значение элемента списка дел из текста HTTP-запроса.
-        [HttpPost]
-        public async Task<ActionResult<TodoItem>> PostTodoItem(TodoItem todoItem)
-        {
-            if (todoItem.Type == "work" || todoItem.Type == "personal")
-            {
-                _context.TodoItems.Add(todoItem);
-                await _context.SaveChangesAsync();
-                return CreatedAtAction(nameof(GetTodoItem), new { id = todoItem.Id }, todoItem);
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Error: can't create todoitem, because type is incorrect. Try with \"work\" or \"personal\"");
-                return NoContent();
-            }
-        }
-
         // DELETE: api/TodoItems/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTodoItem(long id)
@@ -101,7 +100,7 @@ namespace TodoApi.Controllers
             return NoContent();
         }
 
-        //PATCH: api/TodoItems/5
+        // PATCH: api/TodoItems/5 
         [HttpPatch("{id}")]
         public async Task<IActionResult> PatchTodoItem(long id)
         {
@@ -111,7 +110,6 @@ namespace TodoApi.Controllers
                 return NotFound();
             }
 
-            // _context.TodoItems.Remove(todoItem);
             if (todoItem.IsComplete == false) { todoItem.IsComplete = !todoItem.IsComplete; } 
             await _context.SaveChangesAsync();
 
@@ -126,10 +124,10 @@ namespace TodoApi.Controllers
         new TodoItemDTO
         {
             // Id = todoItem.Id,
-            // Description = todoItem.Description,
-            // IsComplete = todoItem.IsComplete,
-            // Type = todoItem.Type,
-            // DateOfCompletion = todoItem.DateOfCompletion
+            Description = todoItem.Description,
+            IsComplete = todoItem.IsComplete,
+            Type = todoItem.Type,
+            DateOfCompletion = todoItem.DateOfCompletion
         };
     }
 }
