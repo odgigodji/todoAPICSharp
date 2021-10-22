@@ -39,7 +39,7 @@ namespace TodoApi.Controllers
                 todoItem.Type = todoItemDTO.Type;
                 todoItem.Description = todoItemDTO.Description;
                 todoItem.DateOfCompletion = todoItemDTO.DateOfCompletion;
-                todoItem.IsComplete = todoItemDTO.IsComplete;
+                // todoItem.IsComplete = todoItemDTO.IsComplete;
 
                 _context.TodoItems.Add(todoItem);
                 await _context.SaveChangesAsync();
@@ -76,7 +76,7 @@ namespace TodoApi.Controllers
             todoItem.Type = todoItemDTO.Type;
             todoItem.Description = todoItemDTO.Description;
             todoItem.DateOfCompletion = todoItemDTO.DateOfCompletion;
-            todoItem.IsComplete = todoItemDTO.IsComplete;
+            // todoItem.IsComplete = todoItemDTO.IsComplete;
 
             _context.Entry(todoItem).State = EntityState.Modified;
 
@@ -89,22 +89,6 @@ namespace TodoApi.Controllers
                 if (!TodoItemExists(id)) { return NotFound(); }
                 else { throw; }
             }
-
-            return CreatedAtAction(nameof(GetTodoItems), new { id = todoItem.Id }, todoItem);
-        }
-
-        // DELETE: api/TodoItems/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTodoItem(long id)
-        {
-            var todoItem = await _context.TodoItems.FindAsync(id);
-            if (todoItem == null)
-            {
-                return NotFound();
-            }
-
-            _context.TodoItems.Remove(todoItem);
-            await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetTodoItems), new { id = todoItem.Id }, todoItem);
         }
@@ -129,11 +113,29 @@ namespace TodoApi.Controllers
             return _context.TodoItems.Any(e => e.Id == id);
         }
 
+        // DELETE: api/TodoItems/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteTodoItem(long id)
+        {
+            var todoItem = await _context.TodoItems.FindAsync(id);
+            if (todoItem == null)
+            {
+                return NotFound();
+            }
+
+            _context.TodoItems.Remove(todoItem);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetTodoItems), new { id = todoItem.Id }, todoItem);
+        }
+
+        
+
         private static TodoItemDTO ItemToDTO(TodoItem todoItem) =>
         new TodoItemDTO
         {
             Description = todoItem.Description,
-            IsComplete = todoItem.IsComplete,
+            // IsComplete = todoItem.IsComplete,
             Type = todoItem.Type,
             DateOfCompletion = todoItem.DateOfCompletion
         };
